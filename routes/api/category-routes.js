@@ -69,6 +69,12 @@ router.put('/:id', (req, res) => {
     individualHooks: true,
     where:{
       id: req.params.id
+    },
+  })
+  .then(dbCategoryData => {
+    if (!dbCategoryData) {
+      res.status(400).json({ message: 'No category found with this id'})
+      return;
     }
     res.json(dbCategoryData);
   })
